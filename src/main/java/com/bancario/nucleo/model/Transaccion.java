@@ -11,17 +11,18 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "transaccion")
+@Table(name = "Transaccion") // CamelCase según solicitud
 public class Transaccion {
 
+    // usar CamelCase
     @Id
-    @Column(name = "id_instruccion")
+    @Column(name = "idInstruccion")
     private UUID idInstruccion;
 
-    @Column(name = "id_mensaje", length = 100, nullable = false)
+    @Column(name = "idMensaje", length = 100, nullable = false)
     private String idMensaje;
 
-    @Column(name = "referencia_red", length = 50, nullable = false, unique = true)
+    @Column(name = "referenciaRed", length = 50, nullable = false, unique = true)
     private String referenciaRed;
 
     @Column(name = "monto", precision = 18, scale = 2, nullable = false)
@@ -30,16 +31,16 @@ public class Transaccion {
     @Column(name = "moneda", length = 3, nullable = false)
     private String moneda;
 
-    @Column(name = "codigo_bic_origen", length = 20, nullable = false)
+    @Column(name = "codigoBicOrigen", length = 20, nullable = false)
     private String codigoBicOrigen;
 
-    @Column(name = "codigo_bic_destino", length = 20, nullable = false)
+    @Column(name = "codigoBicDestino", length = 20, nullable = false)
     private String codigoBicDestino;
 
     @Column(name = "estado", length = 20, nullable = false)
     private String estado; // RECEIVED, ROUTED, COMPLETED, FAILED, TIMEOUT
 
-    @Column(name = "fecha_creacion")
+    @Column(name = "fechaCreacion")
     private LocalDateTime fechaCreacion;
 
     public Transaccion() {

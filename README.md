@@ -56,5 +56,24 @@ docker-compose up --build
 }
 ```
 
+4. Ejemplo de Petición (JSON)
+
+Para probar este microservicio (una vez levantes el Docker), usarás este JSON en Postman o Swagger. Esto es lo que "entra" al Switch.
+
+POST http://localhost:8081/api/v1/transacciones  
+JSON
+
+```json
+{
+  "idInstruccion": "a0eebc99-9c0b-4ef8-bb6d-6bb9bd380a11",
+  "idMensaje": "MSG_001_TEST",
+  "referenciaRed": "REF_NET_123456",
+  "monto": 150.00,
+  "moneda": "USD",
+  "codigoBicOrigen": "ECUSOL_BK",
+  "codigoBicDestino": "NEXUS_BANK"
+}
+```
+
 ---
 **Desarrollado para la Arquitectura de Switch Bancario Interbancario**
