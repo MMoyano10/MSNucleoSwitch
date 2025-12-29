@@ -10,7 +10,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "RespaldoIdempotencia") // CamelCase según solicitud
+@Table(name = "RespaldoIdempotencia")
 public class RespaldoIdempotencia {
 
     @Id
@@ -20,14 +20,14 @@ public class RespaldoIdempotencia {
     @Column(name = "hashContenido", nullable = false)
     private String hashContenido;
 
-    @Column(name = "cuerpoRespuesta", columnDefinition = "jsonb")
+    @Column(name = "cuerpoRespuesta", columnDefinition = "text") // Cambiado a text para evitar problemas con jsonb si no hay dialecto
     private String cuerpoRespuesta;
 
     @Column(name = "fechaExpiracion", nullable = false)
     private LocalDateTime fechaExpiracion;
 
     @OneToOne
-    @MapsId
+    @MapsId // <--- ESTO ES LO IMPORTANTE: Copia el ID de la transacción
     @JoinColumn(name = "idInstruccion")
     private Transaccion transaccion;
 

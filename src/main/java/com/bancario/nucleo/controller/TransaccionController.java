@@ -1,6 +1,5 @@
 package com.bancario.nucleo.controller;
 
-import com.bancario.nucleo.dto.TransaccionRequestDTO;
 import com.bancario.nucleo.dto.TransaccionResponseDTO;
 import com.bancario.nucleo.service.TransaccionService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -25,10 +24,10 @@ public class TransaccionController {
     private final TransaccionService transaccionService;
 
     @PostMapping
-    @Operation(summary = "Procesar una nueva transacción", description = "Recibe una petición de transacción, valida duplicados y gestiona el flujo de orquestación")
-    public ResponseEntity<TransaccionResponseDTO> crearTransaccion(@Valid @RequestBody TransaccionRequestDTO request) {
-        log.info("REST request para crear transacción: {}", request.getIdInstruccion());
-        TransaccionResponseDTO response = transaccionService.procesarTransaccion(request);
+    @Operation(summary = "Procesar transacción ISO 20022", description = "Endpoint estándar para interoperabilidad")
+    public ResponseEntity<TransaccionResponseDTO> crearTransaccion(@Valid @RequestBody com.bancario.nucleo.dto.iso.MensajeISO mensajeIso) {
+        log.info("Recibido mensaje ISO: {}", mensajeIso.getHeader().getMessageId());
+        TransaccionResponseDTO response = transaccionService.procesarTransaccionIso(mensajeIso);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
